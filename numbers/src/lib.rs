@@ -1,7 +1,10 @@
 pub fn print() {
-    let arr = [1, 2, 3, 4, 5];
+    let numbers = [1, 2, 3, 4, 5];
+    output_sequence(numbers)
+}
 
-    for n in arr.iter() {
+fn output_sequence(numbers: [u8; 5]) {
+    for n in numbers.iter() {
         print!("{}, ", n)
     }
 }
