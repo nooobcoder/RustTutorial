@@ -29,9 +29,7 @@ RUN wget https://gist.githubusercontent.com/nooobcoder/d8f728b999329c4edf563cd37
 RUN echo "[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh" >> $HOME/.zshrc
 
 # Install rust and it's components
-RUN curl https://sh.rustup.rs -sSf | sh -s -- -y \
-    && /root/.cargo/env \
-    && rustup install nightly \
+RUN rustup install nightly \
     && rustup component add rustfmt \
     && rustup component add rustfmt --toolchain nightly \
     && rustup component add clippy \
