@@ -11,8 +11,13 @@ tasks:
           sudo tailscaled
     - name: Tailscale
       command: |
-          sudo -E tailscale up --hostname "gitpod@nooobcoder-${GITPOD_WORKSPACE_ID}" \
-                                  --authkey "${TAILSCALE_AUTHKEY}"
+        if [ -n "${TS_STATE_TAILSCALE_EXAMPLE}" ]; then
+          sudo -E tailscale up
+        else
+          sudo -E tailscale up --hostname "gitpod-${GITPOD_GIT_USER_NAME// /-}-$(echo ${GITPOD_WORKSPACE_CONTEXT} | jq -r .repository.name)"
+          # store the tailscale state into gitpod user
+          gp env TS_STATE_TAILSCALE_EXAMPLE="$(sudo cat /var/lib/tailscale/tailscaled.state)"
+        fi
     - name: ImportGPG
       command: >
           [[ ! -z $GNUPG_KEY  ]] &&
