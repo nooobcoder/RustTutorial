@@ -11,6 +11,6 @@
     "context": "..",
     "features": {
         "ghcr.io/tailscale/codespace": {},
-    }
+    },
     "runArgs": [ "--cap-add=NET_ADMIN", "--cap-add=NET_RAW", "--device=/dev/net/tun" ],
 }
