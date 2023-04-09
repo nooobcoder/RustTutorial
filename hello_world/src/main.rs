@@ -1,5 +1,3 @@
-use std::{os::windows::thread, string};
-
 //#region Snippet: type of a variable
 ///
 /// Print the type of a variable
@@ -11,8 +9,11 @@ fn print_type_of<T>(_: &T) {
 }
 //#endregion
 
-use std::env;
+use std::env::{self, Args};
 
 fn main() {
-    
+    let args: Args = env::args();
+    for (i, arg) in args.enumerate() {
+        println!("{}: {}", i, arg);
+    }
 }
