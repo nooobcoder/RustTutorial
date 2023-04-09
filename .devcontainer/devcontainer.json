@@ -1,0 +1,16 @@
+{
+    "name": "Codespaces Rust Starter w Tailscale",
+    "extensions": [
+        "cschleiden.vscode-github-actions",
+        "ms-vsliveshare.vsliveshare",
+        "matklad.rust-analyzer",
+        "serayuzgur.crates",
+        "vadimcn.vscode-lldb"
+    ],
+    "dockerFile": "Dockerfile",
+    "context": "..",
+    "features": {
+        "ghcr.io/tailscale/codespace": {},
+    }
+    "runArgs": [ "--cap-add=NET_ADMIN", "--cap-add=NET_RAW", "--device=/dev/net/tun" ],
+}
