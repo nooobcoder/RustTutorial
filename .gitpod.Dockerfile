@@ -27,3 +27,15 @@ RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTO
 RUN sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k"/' $HOME/.zshrc
 RUN wget https://gist.githubusercontent.com/nooobcoder/d8f728b999329c4edf563cd378d0398c/raw/.p10k.zsh -O $HOME/.p10k.zsh
 RUN echo "[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh" >> $HOME/.zshrc
+
+# Install rust and it's components
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y \
+    && /root/.cargo/env \
+    && rustup install nightly \
+    && rustup component add rustfmt \
+    && rustup component add rustfmt --toolchain nightly \
+    && rustup component add clippy \
+    && rustup component add clippy --toolchain nightly \
+    && cargo install cargo-expand \
+    && cargo install cargo-edit \
+    && cargo install chobs
