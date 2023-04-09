@@ -29,6 +29,6 @@ FROM ubuntu:latest
 # mkdir /home if not exists
 RUN mkdir -p /home
 WORKDIR /home/
-COPY . .
+COPY ./.devcontainer .
 RUN bash ./setup.sh
 ENV PATH="/root/.cargo/bin:$PATH"
