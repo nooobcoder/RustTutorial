@@ -9,19 +9,17 @@ fn print_type_of<T>(_: &T) {
 }
 //#endregion
 
-#[derive(Debug)]
-struct Shuttle {
-    name: String,
-    crew_size: u8,
-    propellant: f64,
+use std::ops::Add;
+
+fn sum_boxes<T: Add<Output = T>>(a: Box<T>, b: Box<T>) -> Box<T> {
+    let sum = (*a) + (*b);
+    Box::new(sum)
 }
 
 fn main() {
-    let vehicle: Shuttle = Shuttle {
-        name: String::from("Discovery"),
-        crew_size: 5,
-        propellant: 82372.2,
-    };
+    let a = Box::new(1);
+    let b = Box::new(2);
 
-    println!("{:?}", vehicle);
+    let sum = *sum_boxes(a, b);
+    println!("sum = {}", sum);
 }
